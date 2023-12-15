@@ -1,8 +1,10 @@
-package src;
+import javax.swing.*;
 import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         Video m = new Video("some thumbnail", "Medion", "description blah blah", 1000, 60, new Date(), 10000, true);
+        JFrame frame = new JFrame("bla");
+        frame.setContentPane(new gui().panelMain);
         System.out.println(m.getDescription());
         m.setNumberOfLikes(2000);
         System.out.println(m.getNumberOfLikes());

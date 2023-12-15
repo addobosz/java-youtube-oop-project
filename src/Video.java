@@ -1,5 +1,3 @@
-package src;
-
 import java.util.Date;
 
 public class Video extends Media {
