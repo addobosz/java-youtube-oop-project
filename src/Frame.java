@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Frame extends JFrame {
+
+    private Frame frame;
     Frame() {
         JFrame frame = new JFrame("Youtube App");
         frame.setSize(500, 500);
@@ -11,5 +13,9 @@ public class Frame extends JFrame {
         frame.setIconImage(icon.getImage());
         frame.getContentPane().setBackground(Color.BLUE);
         frame.setVisible(true);
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

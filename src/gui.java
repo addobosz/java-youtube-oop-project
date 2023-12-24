@@ -6,6 +6,8 @@ public class gui {
 
     private JButton clickMeButton;
     private JPanel panel1;
+    private JLabel img_label;
+
     public gui() {
         JPanel panel1 = new JPanel();
 
