@@ -2,20 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Frame extends JFrame {
-
-    private Frame frame;
-    Frame() {
-        JFrame frame = new JFrame("Youtube App");
-        frame.setSize(500, 500);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Frame() {
+        setTitle("Youtube App");
+        setSize(500, 500);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("images/icon.png"));
-        frame.setIconImage(icon.getImage());
-        frame.getContentPane().setBackground(Color.BLUE);
-        frame.setVisible(true);
-    }
+        setIconImage(icon.getImage());
+        getContentPane().setBackground(Color.BLUE);
 
-    public JFrame getFrame() {
-        return frame;
+        // Initialize the gui class and set its panel as content pane
+        setContentPane(new gui().getPanel1());
     }
 }
