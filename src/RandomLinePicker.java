@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomLinePicker {
-    private int mNumberOfLines;
+    private final int mNumberOfLines;
     private List<String> textLines;
     public RandomLinePicker(String filePath) {
         try {

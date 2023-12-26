@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class UserAccount implements UserInterface{
     protected String mThumbnail;
@@ -48,8 +49,14 @@ public class UserAccount implements UserInterface{
         this.setCurrentlyViewed(null);
     }
     @Override
-    public void search(String channel_name) {
-        ;
+    public List<Channel> search(String name) {
+        List<Channel> resultChannels = new ArrayList<>();
+        for (Channel channel : ChannelsManager.getInstance().getAllChannels()) {
+            if (channel.getName().contains(name)) {
+                resultChannels.add(channel);
+            }
+        }
+        return resultChannels;
     }
 
     // Getters

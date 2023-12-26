@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface UserInterface {
     // Getters
@@ -43,5 +44,5 @@ public interface UserInterface {
 
     void stopWatchingStream();
 
-    void search(String name);
+    List<Channel> search(String name);
 }

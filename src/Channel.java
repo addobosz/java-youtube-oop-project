@@ -15,19 +15,19 @@ public class Channel extends UserAccount {
     }
 
     public void addVideo(Video video) {
-        ;
+        this.mUploadedVideos.add(video);
     }
 
     public void deleteVideo(Video video) {
-        ;
+        this.mUploadedVideos.remove(video);
     }
 
     public void startStream(Stream stream) {
-        ;
+        this.setStream(stream);
     }
 
     public void stopStream() {
-        ;
+        this.setStream(null);
     }
 
     // Getters
