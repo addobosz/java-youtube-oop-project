@@ -23,23 +23,29 @@ public class UserAccount implements UserInterface{
     // Special methods
     @Override
     public void subscribe(Channel channel) {
-        ;
+        channel.addFollower(this);
+        this.mFollowingChannels.add(channel);
     }
     @Override
     public void unsubscribe(Channel channel) {
-        ;
+        channel.removeFollower(this);
+        this.mFollowingChannels.remove(channel);
     }
     @Override
     public void watchVideo(Video video) {
-        ;
+        this.setCurrentlyViewed(video);
+        video.setNumberOfViews(video.getNumberOfViews() + 1);
     }
     @Override
     public void watchStream(Stream stream) {
-        ;
+        this.setCurrentlyViewed(stream);
+        stream.setNumberOfViewers(stream.getNumberOfViewers() + 1);
     }
     @Override
     public void stopWatchingStream() {
-        ;
+        Stream stream = (Stream) this.getCurrentlyViewed();
+        stream.setNumberOfViewers(stream.getNumberOfViewers() - 1);
+        this.setCurrentlyViewed(null);
     }
     @Override
     public void search(String channel_name) {

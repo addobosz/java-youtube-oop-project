@@ -11,6 +11,7 @@ public class Channel extends UserAccount {
         this.mFollowers = followers;
         this.mUploadedVideos = uploadedVideos;
         this.mStream = stream;
+        ChannelsManager.getInstance().addChannel(this);
     }
 
     public void addVideo(Video video) {
@@ -45,6 +46,14 @@ public class Channel extends UserAccount {
     // Setters
     public void setFollowers(ArrayList<UserAccount> followers) {
         this.mFollowers = followers;
+    }
+
+    public void addFollower(UserAccount follower) {
+        this.mFollowers.add(follower);
+    }
+
+    public void removeFollower(UserAccount follower) {
+        this.mFollowers.remove(follower);
     }
 
     public void setUploadedVideos(ArrayList<Video> uploadedVideos) {
