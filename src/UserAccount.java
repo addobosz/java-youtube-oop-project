@@ -19,6 +19,7 @@ public class UserAccount implements UserInterface{
         this.mPremium = premium;
         this.mCurrentlyViewed = currentlyViewed;
         this.mQueue = queue;
+        simulationManager.getInstance().addUser(this);
     }
 
     // Special methods
@@ -34,8 +35,12 @@ public class UserAccount implements UserInterface{
     }
     @Override
     public void watchVideo(Video video) {
-        this.setCurrentlyViewed(video);
-        video.setNumberOfViews(video.getNumberOfViews() + 1);
+        if (video.getPremium() && !this.getPremium()) {
+            System.out.println("You need to be a premium user to watch this video.");
+        } else {
+            this.setCurrentlyViewed(video);
+            video.setNumberOfViews(video.getNumberOfViews() + 1);
+        }
     }
     @Override
     public void watchStream(Stream stream) {
@@ -51,7 +56,7 @@ public class UserAccount implements UserInterface{
     @Override
     public List<Channel> search(String name) {
         List<Channel> resultChannels = new ArrayList<>();
-        for (Channel channel : ChannelsManager.getInstance().getAllChannels()) {
+        for (Channel channel : simulationManager.getInstance().getAllChannels()) {
             if (channel.getName().contains(name)) {
                 resultChannels.add(channel);
             }

@@ -11,7 +11,7 @@ public class Channel extends UserAccount {
         this.mFollowers = followers;
         this.mUploadedVideos = uploadedVideos;
         this.mStream = stream;
-        ChannelsManager.getInstance().addChannel(this);
+        simulationManager.getInstance().addChannel(this);
     }
 
     public void addVideo(Video video) {

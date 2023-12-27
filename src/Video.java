@@ -12,6 +12,7 @@ public class Video extends Media {
         this.mUploadDate = uploadDate;
         this.mNumberOfViews = numberOfViews;
         this.mPremium = premium;
+        simulationManager.getInstance().addVideo(this);
     }
 
     // Getters
