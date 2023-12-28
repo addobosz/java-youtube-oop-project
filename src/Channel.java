@@ -24,9 +24,11 @@ public class Channel extends UserAccount {
 
     public void startStream(Stream stream) {
         this.setStream(stream);
+        System.out.println(stream.getName()+" stream has just started.");
     }
 
     public void stopStream() {
+        simulationManager.getInstance().getAllStreams().remove(this.getStream());
         this.setStream(null);
     }
 

@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class UserAccountFactory {
     // Utility class
@@ -20,6 +23,7 @@ public class UserAccountFactory {
     }
 
     public static void createVideos() {
+        // create videos for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
             int videoCount = random.nextInt(10)+1; // 1-10 videos (both inclusive)
             int numberOfLikes = random.nextInt(1001); // 0-1000 likes (both inclusive)
@@ -32,4 +36,15 @@ public class UserAccountFactory {
         }
     }
 
+    public static void createStreams() {
+        // create streams for each channel
+        for (Channel channel : simulationManager.getInstance().getAllChannels()) {
+                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                int numberOfLikes = random.nextInt(1001); // 0-1000 likes (both inclusive)
+                int delay = random.nextInt(120) + 1; // 1-120 seconds of wait time until the stream is started (both inclusive)
+                Stream stream = new Stream("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), numberOfLikes, delay, 0);
+                Runnable streamRunnable = () -> channel.startStream(stream);
+                scheduler.schedule(streamRunnable, delay, TimeUnit.SECONDS); // schedule the stream to start after the delay
+        }
+    }
 }

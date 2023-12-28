@@ -7,6 +7,7 @@ class simulationManager {
     private final List<Channel> allChannels = new ArrayList<>();
     private final List<UserAccount> allUsers = new ArrayList<>();
     private final List<Video> allVideos = new ArrayList<>();
+    private final List<Stream> allStreams = new ArrayList<>();
     private simulationManager() {
         // Private constructor to prevent instantiation
     }
@@ -22,6 +23,11 @@ class simulationManager {
     public void addVideo(Video video) {
         allVideos.add(video);
     }
+    public void addStream(Stream stream) {
+        allStreams.add(stream);
+    }
+
+    //getters
     public List<Channel> getAllChannels() {
         return allChannels;
     }
@@ -30,5 +36,8 @@ class simulationManager {
     }
     public List<Video> getAllVideos() {
         return allVideos;
+    }
+    public List<Stream> getAllStreams() {
+        return allStreams;
     }
 }
