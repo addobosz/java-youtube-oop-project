@@ -2,14 +2,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserAccount implements UserInterface{
+public class UserAccount implements UserInterface, Runnable {
     protected String mThumbnail;
     protected String mName;
     protected Date mJoinDate;
     protected ArrayList<Channel> mFollowingChannels;
     protected boolean mPremium;
     protected Media mCurrentlyViewed;
+    protected long mVideoStartTime;
     protected ArrayList<Video> mQueue;
+    protected ArrayList<Video> mLikedVideos;
 
     public UserAccount(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Video> queue) {
         this.mThumbnail = thumbnail;
@@ -19,6 +21,7 @@ public class UserAccount implements UserInterface{
         this.mPremium = premium;
         this.mCurrentlyViewed = currentlyViewed;
         this.mQueue = queue;
+        this.mVideoStartTime = 0;
         simulationManager.getInstance().addUser(this);
     }
 
@@ -39,6 +42,7 @@ public class UserAccount implements UserInterface{
             System.out.println("You need to be a premium user to watch this video.");
         } else {
             this.setCurrentlyViewed(video);
+            this.setVideoStartTime(System.currentTimeMillis());
             video.setNumberOfViews(video.getNumberOfViews() + 1);
         }
     }
@@ -53,6 +57,13 @@ public class UserAccount implements UserInterface{
         stream.setNumberOfViewers(stream.getNumberOfViewers() - 1);
         this.setCurrentlyViewed(null);
     }
+    public void likeVideo() {
+        Video video = (Video) this.getCurrentlyViewed();
+        if (!this.mLikedVideos.contains(video)) { // only works if the video is not already liked
+            video.setNumberOfLikes(video.getNumberOfLikes() + 1);
+            this.mLikedVideos.add(video);
+        }
+    }
     @Override
     public List<Channel> search(String name) {
         List<Channel> resultChannels = new ArrayList<>();
@@ -63,7 +74,27 @@ public class UserAccount implements UserInterface{
         }
         return resultChannels;
     }
+    @Override
+    public void run() {
+        while (true) {
+            if (this.getCurrentlyViewed() != null) {
+                if (UserAccountFactory.random.nextInt(1000) < 17) { // 1.7% chance of liking a video every second
+                    this.likeVideo();
+                }
+                if (this.mVideoStartTime + ((Video) this.getCurrentlyViewed()).getDuration() * 1000L < System.currentTimeMillis()) { // if the video has ended
+                    this.setCurrentlyViewed(null);
+                }
+            } else {
 
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if
+        }
+    }
     // Getters
     @Override
     public String getThumbnail() {
@@ -92,6 +123,10 @@ public class UserAccount implements UserInterface{
     @Override
     public ArrayList<Video> getQueue() {
         return mQueue;
+    }
+    @Override
+    public long getVideoStartTime() {
+        return mVideoStartTime;
     }
 
     // Setters
@@ -122,5 +157,9 @@ public class UserAccount implements UserInterface{
     @Override
     public void setQueue(ArrayList<Video> queue) {
         this.mQueue = queue;
+    }
+    @Override
+    public void setVideoStartTime(long videoStartTime) {
+        this.mVideoStartTime = videoStartTime;
     }
 }

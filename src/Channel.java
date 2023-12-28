@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
-public class Channel extends UserAccount {
+public class Channel extends UserAccount implements Runnable {
     private ArrayList<UserAccount> mFollowers;
     private ArrayList<Video> mUploadedVideos;
     private Stream mStream;
@@ -23,6 +24,7 @@ public class Channel extends UserAccount {
     }
 
     public void startStream(Stream stream) {
+        this.stopStream();
         this.setStream(stream);
         System.out.println(stream.getName()+" stream has just started.");
     }
@@ -30,6 +32,26 @@ public class Channel extends UserAccount {
     public void stopStream() {
         simulationManager.getInstance().getAllStreams().remove(this.getStream());
         this.setStream(null);
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            if (this.getStream() != null) {
+                System.out.println(this.getStream().getName()+" stream has "+this.getStream().getNumberOfViewers()+" viewers.");
+                if (UserAccountFactory.random.nextInt(100) < 5) { // 5% chance of stopping a stream every second
+                    this.stopStream();
+                }
+            } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
+                Stream stream = new Stream("thumbnail", "stream", "description", 0, 0, 0);
+                this.startStream(stream);
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // Getters

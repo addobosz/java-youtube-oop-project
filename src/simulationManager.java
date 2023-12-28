@@ -26,6 +26,12 @@ class simulationManager {
     public void addStream(Stream stream) {
         allStreams.add(stream);
     }
+    public void initializeSimulation(int numberOfUsers, int numberOfChannels) {
+        UserAccountFactory.initializeUsers(numberOfUsers);
+        UserAccountFactory.initializeChannels(numberOfChannels);
+        UserAccountFactory.createVideos();
+        UserAccountFactory.createStreams();
+    }
 
     //getters
     public List<Channel> getAllChannels() {

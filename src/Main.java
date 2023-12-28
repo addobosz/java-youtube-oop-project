@@ -11,10 +11,7 @@ public class Main {
         });
 
         // Initialize the simulation
-        UserAccountFactory.initializeUsers(10);
-        ChannelFactory.initializeChannels(10);
-        UserAccountFactory.createVideos();
-        UserAccountFactory.createStreams();
-        System.out.println(simulationManager.getInstance().getAllStreams().size());
+        simulationManager.getInstance().initializeSimulation(1,1);
+
     }
 }

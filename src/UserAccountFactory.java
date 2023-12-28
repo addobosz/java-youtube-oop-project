@@ -22,6 +22,14 @@ public class UserAccountFactory {
         }
     }
 
+    public static void initializeChannels(int n) {
+        for (int i = 0; i < n; i++) {
+            Channel channel = new Channel("example_thumbnail", randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), false, null, new ArrayList<Video>(), new ArrayList<UserAccount>(), new ArrayList<Video>(), null);
+            Thread channelThread = new Thread(channel);
+            channelThread.start();
+        }
+    }
+
     public static void createVideos() {
         // create videos for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
@@ -39,11 +47,11 @@ public class UserAccountFactory {
     public static void createStreams() {
         // create streams for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
-                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
                 int numberOfLikes = random.nextInt(1001); // 0-1000 likes (both inclusive)
                 int delay = random.nextInt(120) + 1; // 1-120 seconds of wait time until the stream is started (both inclusive)
                 Stream stream = new Stream("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), numberOfLikes, delay, 0);
-                Runnable streamRunnable = () -> channel.startStream(stream);
+                ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                Runnable streamRunnable = () -> channel.startStream(stream); // convert the stream to a runnable in order to schedule it
                 scheduler.schedule(streamRunnable, delay, TimeUnit.SECONDS); // schedule the stream to start after the delay
         }
     }

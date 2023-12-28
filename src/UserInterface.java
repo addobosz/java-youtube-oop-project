@@ -18,6 +18,8 @@ public interface UserInterface {
 
     ArrayList<Video> getQueue();
 
+    long getVideoStartTime();
+
     // Setters
     void setThumbnail(String thumbnail);
 
@@ -32,6 +34,8 @@ public interface UserInterface {
     void setCurrentlyViewed(Media currentlyViewed);
 
     void setQueue(ArrayList<Video> queue);
+
+    void setVideoStartTime(long videoStartTime);
 
     // Additional methods
     void subscribe(Channel channel);
