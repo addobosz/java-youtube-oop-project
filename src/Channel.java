@@ -7,7 +7,7 @@ public class Channel extends UserAccount implements Runnable {
     private ArrayList<Video> mUploadedVideos;
     private Stream mStream;
 
-    public Channel(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Video> queue, ArrayList<UserAccount> followers, ArrayList<Video> uploadedVideos, Stream stream) {
+    public Channel(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Media> queue, ArrayList<UserAccount> followers, ArrayList<Video> uploadedVideos, Stream stream) {
         super(thumbnail, name, joinDate, followingChannels, premium, currentlyViewed, queue);
         this.mFollowers = followers;
         this.mUploadedVideos = uploadedVideos;

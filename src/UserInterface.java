@@ -16,7 +16,7 @@ public interface UserInterface {
 
     Media getCurrentlyViewed();
 
-    ArrayList<Video> getQueue();
+    ArrayList<Media> getQueue();
 
     long getVideoStartTime();
 
@@ -33,7 +33,7 @@ public interface UserInterface {
 
     void setCurrentlyViewed(Media currentlyViewed);
 
-    void setQueue(ArrayList<Video> queue);
+    void setQueue(ArrayList<Media> queue);
 
     void setVideoStartTime(long videoStartTime);
 

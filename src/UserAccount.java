@@ -10,10 +10,10 @@ public class UserAccount implements UserInterface, Runnable {
     protected boolean mPremium;
     protected Media mCurrentlyViewed;
     protected long mVideoStartTime;
-    protected ArrayList<Video> mQueue;
+    protected ArrayList<Media> mQueue;
     protected ArrayList<Video> mLikedVideos;
 
-    public UserAccount(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Video> queue) {
+    public UserAccount(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Media> queue) {
         this.mThumbnail = thumbnail;
         this.mName = name;
         this.mJoinDate = joinDate;
@@ -44,12 +44,14 @@ public class UserAccount implements UserInterface, Runnable {
             this.setCurrentlyViewed(video);
             this.setVideoStartTime(System.currentTimeMillis());
             video.setNumberOfViews(video.getNumberOfViews() + 1);
+            System.out.println(this.getName()+" is watching "+video.getName()+".");
         }
     }
     @Override
     public void watchStream(Stream stream) {
         this.setCurrentlyViewed(stream);
         stream.setNumberOfViewers(stream.getNumberOfViewers() + 1);
+        System.out.println(this.getName()+" is watching "+stream.getName()+".");
     }
     @Override
     public void stopWatchingStream() {
@@ -78,21 +80,45 @@ public class UserAccount implements UserInterface, Runnable {
     public void run() {
         while (true) {
             if (this.getCurrentlyViewed() != null) {
-                if (UserAccountFactory.random.nextInt(1000) < 17) { // 1.7% chance of liking a video every second
-                    this.likeVideo();
+                if (this.getCurrentlyViewed() instanceof Video) {
+                    if (UserAccountFactory.random.nextInt(1000) < 17) { // 1.7% chance of liking a video every second
+                        this.likeVideo();
+                        System.out.println(this.getName() + " liked " + this.getCurrentlyViewed().getName() + ".");
+                    }
+                    if (this.mVideoStartTime + ((Video) this.getCurrentlyViewed()).getDuration() * 1000L < System.currentTimeMillis()) { // if the video has ended
+                        System.out.println(this.getName() + " has finished watching " + this.getCurrentlyViewed().getName() + ".");
+                        this.setCurrentlyViewed(null);
+                    }
                 }
-                if (this.mVideoStartTime + ((Video) this.getCurrentlyViewed()).getDuration() * 1000L < System.currentTimeMillis()) { // if the video has ended
-                    this.setCurrentlyViewed(null);
+            } else { // if the user is not watching anything, watch the next item in the queue
+                if (!this.getQueue().isEmpty()) { // if the queue is not empty, watch the next item (either video or stream)
+                    Media next = this.getQueue().getFirst();
+                    this.getQueue().removeFirst();
+                    if (next instanceof Video) {
+                        this.watchVideo((Video) next);
+                    } else if (next instanceof Stream) {
+                        this.watchStream((Stream) next);
+                    }
                 }
-            } else {
-
+            }
+            if (this.getQueue().size() < 10) { // if the queue is not full, add a random video or stream to the queue
+                if (UserAccountFactory.random.nextBoolean()) { // 50% chance of adding a video
+                    Video video = simulationManager.getInstance().getAllVideos().get(UserAccountFactory.random.nextInt(simulationManager.getInstance().getAllVideos().size()));
+                    if (video != this.getCurrentlyViewed()) { // if the video is not the one that the user is currently watching
+                        this.getQueue().add(video);
+                    }
+                } else { // 50% chance of adding a stream
+                    Stream stream = simulationManager.getInstance().getAllStreams().get(UserAccountFactory.random.nextInt(simulationManager.getInstance().getAllStreams().size()));
+                    if (stream != this.getCurrentlyViewed()) { // if the stream is not the one that the user is currently watching
+                        this.getQueue().add(stream);
+                    }
+                }
             }
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if
         }
     }
     // Getters
@@ -121,7 +147,7 @@ public class UserAccount implements UserInterface, Runnable {
         return mCurrentlyViewed;
     }
     @Override
-    public ArrayList<Video> getQueue() {
+    public ArrayList<Media> getQueue() {
         return mQueue;
     }
     @Override
@@ -155,7 +181,7 @@ public class UserAccount implements UserInterface, Runnable {
         this.mCurrentlyViewed = currentlyViewed;
     }
     @Override
-    public void setQueue(ArrayList<Video> queue) {
+    public void setQueue(ArrayList<Media> queue) {
         this.mQueue = queue;
     }
     @Override

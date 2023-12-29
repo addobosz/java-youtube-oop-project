@@ -12,6 +12,7 @@ public class Main {
 
         // Initialize the simulation
         simulationManager.getInstance().initializeSimulation(1,1);
-
+        // Start the simulation
+        simulationManager.getInstance().startSimulation();
     }
 }

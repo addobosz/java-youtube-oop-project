@@ -33,6 +33,12 @@ class simulationManager {
         UserAccountFactory.createStreams();
     }
 
+    public void startSimulation() {
+        for (Thread thread : UserAccountFactory.agentThreads) {
+            thread.start();
+        }
+    }
+
     //getters
     public List<Channel> getAllChannels() {
         return allChannels;
