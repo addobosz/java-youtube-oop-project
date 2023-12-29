@@ -90,6 +90,10 @@ public class UserAccount implements UserInterface, Runnable {
                         this.setCurrentlyViewed(null);
                     }
                 }
+                if (UserAccountFactory.random.nextInt(1000) < 17) {
+                    this.subscribe(this.getCurrentlyViewed().getAuthor()); // 1.7% chance of subscribing to the author of the video or stream every second
+                    System.out.println(this.getName() + " subscribed to " + this.getCurrentlyViewed().getAuthor().getName() + ".");
+                }
             } else { // if the user is not watching anything, watch the next item in the queue
                 if (!this.getQueue().isEmpty()) { // if the queue is not empty, watch the next item (either video or stream)
                     Media next = this.getQueue().getFirst();

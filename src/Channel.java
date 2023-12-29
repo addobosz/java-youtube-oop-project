@@ -17,6 +17,7 @@ public class Channel extends UserAccount implements Runnable {
 
     public void addVideo(Video video) {
         this.mUploadedVideos.add(video);
+        video.setAuthor(this);
     }
 
     public void deleteVideo(Video video) {
@@ -26,6 +27,7 @@ public class Channel extends UserAccount implements Runnable {
     public void startStream(Stream stream) {
         this.stopStream();
         this.setStream(stream);
+        stream.setAuthor(this);
         System.out.println(stream.getName()+" stream has just started.");
     }
 

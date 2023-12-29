@@ -3,6 +3,7 @@ public class Media {
     protected String mName;
     protected String mDescription;
     protected int mNumberOfLikes;
+    protected Channel mAuthor;
 
     public Media(String thumbnail, String name, String description, int numberOfLikes) {
         this.mThumbnail = thumbnail;
@@ -28,6 +29,10 @@ public class Media {
         return mNumberOfLikes;
     }
 
+    public Channel getAuthor() {
+        return mAuthor;
+    }
+
     // Setters
     public void setThumbnail(String thumbnail) {
         this.mThumbnail = thumbnail;
@@ -43,6 +48,10 @@ public class Media {
 
     public void setNumberOfLikes(int numberOfLikes) {
         this.mNumberOfLikes = numberOfLikes;
+    }
+
+    public void setAuthor(Channel author) {
+        this.mAuthor = author;
     }
 
 }
