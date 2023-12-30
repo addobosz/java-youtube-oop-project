@@ -3,10 +3,10 @@ import java.util.Date;
 import java.util.concurrent.Semaphore;
 
 public class Channel extends UserAccount implements Runnable {
-    private ArrayList<UserAccount> mFollowers;
-    private ArrayList<Video> mUploadedVideos;
-    private Stream mStream;
-
+    private volatile ArrayList<UserAccount> mFollowers;
+    private volatile ArrayList<Video> mUploadedVideos;
+    private volatile Stream mStream;
+    private Semaphore semStream = new Semaphore(1);
 
     public Channel(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Media> queue, ArrayList<UserAccount> followers, ArrayList<Video> uploadedVideos, Stream stream) {
         super(thumbnail, name, joinDate, followingChannels, premium, currentlyViewed, queue);
@@ -38,14 +38,20 @@ public class Channel extends UserAccount implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (this.getStream() != null) {
-                System.out.println(this.getStream().getName()+" stream has "+this.getStream().getNumberOfViewers()+" viewers.");
-                if (UserAccountFactory.random.nextInt(100) < 5) { // 5% chance of stopping a stream every second
-                    this.stopStream();
+            try {
+                semStream.acquire();
+                if (this.getStream() != null) {
+                    if (UserAccountFactory.random.nextInt(100) < 3) { // 3% chance of stopping a stream every second
+                        this.stopStream();
+                    }
+                } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
+                    Stream stream = new Stream("thumbnail", UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), 0, 0, 0, this);
+                    this.startStream(stream);
                 }
-            } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
-                Stream stream = new Stream("thumbnail", "stream", "description", 0, 0, 0, this);
-                this.startStream(stream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                semStream.release();
             }
             try {
                 Thread.sleep(1000);

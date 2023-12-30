@@ -2,7 +2,7 @@ public class Media {
     protected String mThumbnail;
     protected String mName;
     protected String mDescription;
-    protected int mNumberOfLikes;
+    protected volatile int mNumberOfLikes;
     protected Channel mAuthor;
 
     public Media(String thumbnail, String name, String description, int numberOfLikes, Channel author) {
@@ -31,7 +31,7 @@ public class Media {
     }
 
     public Channel getAuthor() {
-        return mAuthor;
+        return this.mAuthor;
     }
 
     // Setters
