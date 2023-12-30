@@ -6,8 +6,8 @@ public class Video extends Media {
     private int mNumberOfViews;
     private boolean mPremium;
 
-    public Video(String thumbnail, String name, String description, int numberOfLikes, int duration, Date uploadDate, int numberOfViews, boolean premium) {
-        super(thumbnail, name, description, numberOfLikes);
+    public Video(String thumbnail, String name, String description, int numberOfLikes, int duration, Date uploadDate, int numberOfViews, boolean premium, Channel author) {
+        super(thumbnail, name, description, numberOfLikes, author);
         this.mDuration = duration;
         this.mUploadDate = uploadDate;
         this.mNumberOfViews = numberOfViews;

@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Channel extends UserAccount implements Runnable {
     private ArrayList<UserAccount> mFollowers;
     private ArrayList<Video> mUploadedVideos;
     private Stream mStream;
+
 
     public Channel(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Media> queue, ArrayList<UserAccount> followers, ArrayList<Video> uploadedVideos, Stream stream) {
         super(thumbnail, name, joinDate, followingChannels, premium, currentlyViewed, queue);
@@ -17,7 +18,6 @@ public class Channel extends UserAccount implements Runnable {
 
     public void addVideo(Video video) {
         this.mUploadedVideos.add(video);
-        video.setAuthor(this);
     }
 
     public void deleteVideo(Video video) {
@@ -27,7 +27,6 @@ public class Channel extends UserAccount implements Runnable {
     public void startStream(Stream stream) {
         this.stopStream();
         this.setStream(stream);
-        stream.setAuthor(this);
         System.out.println(stream.getName()+" stream has just started.");
     }
 
@@ -45,7 +44,7 @@ public class Channel extends UserAccount implements Runnable {
                     this.stopStream();
                 }
             } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
-                Stream stream = new Stream("thumbnail", "stream", "description", 0, 0, 0);
+                Stream stream = new Stream("thumbnail", "stream", "description", 0, 0, 0, this);
                 this.startStream(stream);
             }
             try {

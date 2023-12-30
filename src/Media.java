@@ -5,11 +5,12 @@ public class Media {
     protected int mNumberOfLikes;
     protected Channel mAuthor;
 
-    public Media(String thumbnail, String name, String description, int numberOfLikes) {
+    public Media(String thumbnail, String name, String description, int numberOfLikes, Channel author) {
         this.mThumbnail = thumbnail;
         this.mName = name;
         this.mDescription = description;
         this.mNumberOfLikes = numberOfLikes;
+        this.mAuthor = author;
     }
 
     // Getters

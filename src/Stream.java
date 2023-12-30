@@ -4,8 +4,8 @@ public class Stream extends Media {
     private int mStartTime;
     private int mNumberOfViewers;
 
-    public Stream(String thumbnail, String name, String description, int numberOfLikes, int startTime, int numOfViewers) {
-        super(thumbnail, name, description, numberOfLikes);
+    public Stream(String thumbnail, String name, String description, int numberOfLikes, int startTime, int numOfViewers, Channel author) {
+        super(thumbnail, name, description, numberOfLikes, author);
         this.mStartTime = startTime;
         this.mNumberOfViewers = numOfViewers;
         simulationManager.getInstance().addStream(this);

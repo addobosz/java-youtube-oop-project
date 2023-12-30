@@ -22,14 +22,17 @@ public class UserAccount implements UserInterface, Runnable {
         this.mCurrentlyViewed = currentlyViewed;
         this.mQueue = queue;
         this.mVideoStartTime = 0;
+        this.mLikedVideos = new ArrayList<>();
         simulationManager.getInstance().addUser(this);
     }
 
     // Special methods
     @Override
     public void subscribe(Channel channel) {
-        channel.addFollower(this);
-        this.mFollowingChannels.add(channel);
+        if (!this.mFollowingChannels.contains(channel)) {
+            channel.addFollower(this);
+            this.mFollowingChannels.add(channel);
+        }
     }
     @Override
     public void unsubscribe(Channel channel) {
@@ -81,18 +84,15 @@ public class UserAccount implements UserInterface, Runnable {
         while (true) {
             if (this.getCurrentlyViewed() != null) {
                 if (this.getCurrentlyViewed() instanceof Video) {
-                    if (UserAccountFactory.random.nextInt(1000) < 17) { // 1.7% chance of liking a video every second
+                    if (UserAccountFactory.random.nextInt(1000) < 17*30) { // 1.7% chance of liking a video every second
                         this.likeVideo();
-                        System.out.println(this.getName() + " liked " + this.getCurrentlyViewed().getName() + ".");
                     }
                     if (this.mVideoStartTime + ((Video) this.getCurrentlyViewed()).getDuration() * 1000L < System.currentTimeMillis()) { // if the video has ended
-                        System.out.println(this.getName() + " has finished watching " + this.getCurrentlyViewed().getName() + ".");
                         this.setCurrentlyViewed(null);
                     }
                 }
-                if (UserAccountFactory.random.nextInt(1000) < 17) {
+                if (UserAccountFactory.random.nextInt(1000) < 17*30) {
                     this.subscribe(this.getCurrentlyViewed().getAuthor()); // 1.7% chance of subscribing to the author of the video or stream every second
-                    System.out.println(this.getName() + " subscribed to " + this.getCurrentlyViewed().getAuthor().getName() + ".");
                 }
             } else { // if the user is not watching anything, watch the next item in the queue
                 if (!this.getQueue().isEmpty()) { // if the queue is not empty, watch the next item (either video or stream)
