@@ -22,6 +22,7 @@ public class Channel extends UserAccount implements Runnable {
 
     public void deleteVideo(Video video) {
         this.mUploadedVideos.remove(video);
+        simulationManager.getInstance().getAllVideos().remove(video);
     }
 
     public void startStream(Stream stream) {
@@ -47,6 +48,13 @@ public class Channel extends UserAccount implements Runnable {
                 } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
                     Stream stream = new Stream("thumbnail", UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), 0, 0, 0, this);
                     this.startStream(stream);
+                }
+                if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of uploading a video every second
+                    int numberOfLikes = UserAccountFactory.random.nextInt(1001); // 0-1000 likes (both inclusive)
+                    int duration = UserAccountFactory.random.nextInt(60)+1; // 1-60 seconds of length (both inclusive)
+                    int numberOfViews = UserAccountFactory.random.nextInt(2001) + numberOfLikes; // at least as many views as likes
+                    boolean isPremium = UserAccountFactory.random.nextBoolean();
+                    this.addVideo(new Video("thumbnail", UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), numberOfLikes, duration, RandomDatePicker.getInstance().getRandomDate(), numberOfViews, isPremium, this));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

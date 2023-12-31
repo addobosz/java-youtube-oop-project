@@ -39,12 +39,10 @@ public class UserAccountFactory {
         // create videos for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
             int videoCount = random.nextInt(10)+1; // 1-10 videos (both inclusive)
-            int numberOfLikes = random.nextInt(1001); // 0-1000 likes (both inclusive)
             int duration = random.nextInt(60)+1; // 1-60 seconds of length (both inclusive)
-            int numberOfViews = random.nextInt(2001) + numberOfLikes; // at least as many views as likes
             boolean isPremium = random.nextBoolean();
             for (int i = 0; i < videoCount; i++) {
-                channel.addVideo(new Video("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), numberOfLikes, duration, RandomDatePicker.getInstance().getRandomDate(), numberOfViews, isPremium, channel));
+                channel.addVideo(new Video("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, duration, RandomDatePicker.getInstance().getRandomDate(), 0, isPremium, channel));
             }
         }
     }
@@ -52,9 +50,8 @@ public class UserAccountFactory {
     public static void createStreams() {
         // create streams for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
-                int numberOfLikes = random.nextInt(1001); // 0-1000 likes (both inclusive)
                 int delay = random.nextInt(120) + 1; // 1-120 seconds of wait time until the stream is started (both inclusive)
-                Stream stream = new Stream("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), numberOfLikes, delay, 0, channel);
+                Stream stream = new Stream("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, delay, 0, channel);
                 ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
                 Runnable streamRunnable = () -> channel.startStream(stream); // convert the stream to a runnable in order to schedule it
                 scheduler.schedule(streamRunnable, delay, TimeUnit.SECONDS); // schedule the stream to start after the delay
