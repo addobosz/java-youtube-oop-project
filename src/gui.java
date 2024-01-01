@@ -1,8 +1,11 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.DefaultCaret;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -40,7 +43,9 @@ public class gui {
         listUsers.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-
+                if (!e.getValueIsAdjusting()) {
+                    createFrame();
+                }
             }
         });
 
@@ -80,5 +85,58 @@ public class gui {
 
     public JPanel getPanel1() {
         return panel1;
+    }
+//    private boolean isFrameOpen() {
+//        java.awt.Frame[] frames = JFrame.getFrames();
+//        for (java.awt.Frame frame : frames) {
+//            if (frame.getTitle().equals("Test")) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    public static void createFrame()
+    {
+        EventQueue.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                JFrame frame = new JFrame("Test");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                try
+                {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.setOpaque(true);
+                JTextArea textArea = new JTextArea(15, 50);
+                textArea.setWrapStyleWord(true);
+                textArea.setEditable(false);
+                textArea.setFont(Font.getFont(Font.SANS_SERIF));
+                JScrollPane scroller = new JScrollPane(textArea);
+                scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                JPanel inputpanel = new JPanel();
+                inputpanel.setLayout(new FlowLayout());
+                JTextField input = new JTextField(20);
+                JButton button = new JButton("Enter");
+                DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+                panel.add(scroller);
+                inputpanel.add(input);
+                inputpanel.add(button);
+                panel.add(inputpanel);
+                frame.getContentPane().add(BorderLayout.CENTER, panel);
+                frame.pack();
+                frame.setLocationByPlatform(true);
+                frame.setVisible(true);
+                frame.setResizable(false);
+                input.requestFocus();
+            }
+        });
     }
 }
