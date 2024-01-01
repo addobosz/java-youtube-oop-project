@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Frame extends JFrame {
     public Frame() {
@@ -10,8 +11,12 @@ public class Frame extends JFrame {
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("images/icon.png"));
         setIconImage(icon.getImage());
         getContentPane().setBackground(Color.BLUE);
+        gui gui = new gui();
+        for (UserAccount user : simulationManager.getInstance().getAllUsers()) {
+            gui.addUserToList(user);
+        }
 
         // Initialize the gui class and set its panel as content pane
-        setContentPane(new gui().getPanel1());
+        setContentPane(gui.getPanel1());
     }
 }

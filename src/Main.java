@@ -9,7 +9,6 @@ public class Main {
         simulationManager.getInstance().initializeSimulation(10,10);
         // Start the simulation
         //simulationManager.getInstance().startSimulation();
-
         SwingUtilities.invokeLater(() -> {
             Frame frame = new Frame();
             frame.pack();
