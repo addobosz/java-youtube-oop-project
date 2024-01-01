@@ -21,7 +21,7 @@ public class UserAccountFactory {
     public static void initializeUsers(int n) {
         for (int i = 0; i < n; i++) {
             boolean is_premium = random.nextBoolean();
-            UserAccount user = new UserAccount("example_thumbnail", randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), is_premium, null, new ArrayList<Media>());
+            UserAccount user = new UserAccount(RandomThumbnailPicker.getRandomUserPicture(), randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), is_premium, null, new ArrayList<Media>());
             Thread userThread = new Thread(user);
             agentThreads.add(userThread);
         }
@@ -29,7 +29,7 @@ public class UserAccountFactory {
 
     public static void initializeChannels(int n) {
         for (int i = 0; i < n; i++) {
-            Channel channel = new Channel("example_thumbnail", randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), false, null, new ArrayList<Media>(), new ArrayList<UserAccount>(), new ArrayList<Video>(), null);
+            Channel channel = new Channel(RandomThumbnailPicker.getRandomUserPicture(), randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), false, null, new ArrayList<Media>(), new ArrayList<UserAccount>(), new ArrayList<Video>(), null);
             Thread channelThread = new Thread(channel);
             agentThreads.add(channelThread);
         }
@@ -42,7 +42,7 @@ public class UserAccountFactory {
             int duration = random.nextInt(60)+1; // 1-60 seconds of length (both inclusive)
             boolean isPremium = random.nextBoolean();
             for (int i = 0; i < videoCount; i++) {
-                channel.addVideo(new Video("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, duration, RandomDatePicker.getInstance().getRandomDate(), 0, isPremium, channel));
+                channel.addVideo(new Video(RandomThumbnailPicker.getRandomVideoThumbnail(), randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, duration, RandomDatePicker.getInstance().getRandomDate(), 0, isPremium, channel));
             }
         }
     }
@@ -51,7 +51,7 @@ public class UserAccountFactory {
         // create streams for each channel
         for (Channel channel : simulationManager.getInstance().getAllChannels()) {
                 int delay = random.nextInt(120) + 1; // 1-120 seconds of wait time until the stream is started (both inclusive)
-                Stream stream = new Stream("example thumbnail", randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, delay, 0, channel);
+                Stream stream = new Stream(RandomThumbnailPicker.getRandomVideoThumbnail(), randomVideoTitlePicker.getRandomLine(), randomDescriptionPicker.getRandomLine(), 0, delay, 0, channel);
                 ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
                 Runnable streamRunnable = () -> channel.startStream(stream); // convert the stream to a runnable in order to schedule it
                 scheduler.schedule(streamRunnable, delay, TimeUnit.SECONDS); // schedule the stream to start after the delay

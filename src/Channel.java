@@ -38,6 +38,7 @@ public class Channel extends UserAccount implements Runnable {
 
     @Override
     public void run() {
+        super.run(); // Channels have to act as both users and channels.
         while (true) {
             try {
                 semStream.acquire();

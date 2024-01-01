@@ -28,7 +28,7 @@ public class gui {
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "bla bla");
+                JOptionPane.showMessageDialog(null, "The author of this program is Adam Dobosz");
             }
         });
 
@@ -84,13 +84,8 @@ public class gui {
         refreshChannelsList();
     }
 
-    public JPanel getPanel1() {
-        return panel1;
-    }
-
-    public void createFrame(int userIndex) {
+    public void createFrame(int userIndex) { // method to create a popup window with user/channel data
         UserAccount user = users.get(userIndex);
-        System.out.println(user.getName());
         EventQueue.invokeLater(() -> {
             JFrame frame = new JFrame("User Data");
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -108,13 +103,20 @@ public class gui {
             JTextArea textArea = new JTextArea(15, 50);
             textArea.setWrapStyleWord(true);
             textArea.setEditable(false);
-            //textArea.setFont(Font.getFont(Font.SANS_SERIF));
+            Font textAreaFont = new Font("Arial", Font.PLAIN, 16); // Font(name, style, size)
+            textArea.setFont(textAreaFont);
 
             textArea.append("Username: " + user.getName() + "\n");
             if (user.getCurrentlyViewed() != null) {
-                textArea.append("Currently Viewed: " + user.getCurrentlyViewed().getName() + "\n");
+                textArea.append("Currently Viewed: " + user.getCurrentlyViewed().getName() + "by " + user.getCurrentlyViewed().getAuthor().getName() + "\n");
             }
             textArea.append("Join date: " + user.getJoinDate() + "\n");
+            textArea.append("Premium: " + user.getPremium() + "\n");
+            textArea.append("Followed channels: " + user.getFollowingChannels().size() + "\n");
+            textArea.append("Queue size: " + user.getQueue().size() + "\n");
+
+            ImageIcon thumbnail = new ImageIcon(ClassLoader.getSystemResource("images/thumbnails/"+user.getThumbnail()));
+            JLabel imageLabel = new JLabel(thumbnail);
 
             JScrollPane scroller = new JScrollPane(textArea);
             scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -125,16 +127,23 @@ public class gui {
             JButton button = new JButton("Enter");
             DefaultCaret caret = (DefaultCaret) textArea.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
+            panel.add(imageLabel);
             panel.add(scroller);
             inputpanel.add(input);
             inputpanel.add(button);
             panel.add(inputpanel);
+
             frame.getContentPane().add(BorderLayout.CENTER, panel);
             frame.pack();
             frame.setLocationByPlatform(true);
             frame.setVisible(true);
-            frame.setResizable(false);
+            frame.setResizable(true);
             input.requestFocus();
         });
+    }
+
+    public JPanel getPanel1() {
+        return panel1;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Frame extends JFrame {
     public Frame() {
-        setTitle("Youtube App");
+        setTitle("Good Tube App");
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("images/icon.png"));
