@@ -43,8 +43,9 @@ public class gui {
         listUsers.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    createFrame();
+                if (!e.getValueIsAdjusting()) { // Prevents double window on selection
+                    int selectedUserIndex = listUsers.getSelectedIndex();
+                    createFrame(selectedUserIndex);
                 }
             }
         });
@@ -86,57 +87,54 @@ public class gui {
     public JPanel getPanel1() {
         return panel1;
     }
-//    private boolean isFrameOpen() {
-//        java.awt.Frame[] frames = JFrame.getFrames();
-//        for (java.awt.Frame frame : frames) {
-//            if (frame.getTitle().equals("Test")) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    public static void createFrame()
-    {
-        EventQueue.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
+
+    public void createFrame(int userIndex) {
+        UserAccount user = users.get(userIndex);
+        System.out.println(user.getName());
+        EventQueue.invokeLater(() -> {
+            JFrame frame = new JFrame("User Data");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            try
             {
-                JFrame frame = new JFrame("Test");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                try
-                {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-                panel.setOpaque(true);
-                JTextArea textArea = new JTextArea(15, 50);
-                textArea.setWrapStyleWord(true);
-                textArea.setEditable(false);
-                textArea.setFont(Font.getFont(Font.SANS_SERIF));
-                JScrollPane scroller = new JScrollPane(textArea);
-                scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-                scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                JPanel inputpanel = new JPanel();
-                inputpanel.setLayout(new FlowLayout());
-                JTextField input = new JTextField(20);
-                JButton button = new JButton("Enter");
-                DefaultCaret caret = (DefaultCaret) textArea.getCaret();
-                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-                panel.add(scroller);
-                inputpanel.add(input);
-                inputpanel.add(button);
-                panel.add(inputpanel);
-                frame.getContentPane().add(BorderLayout.CENTER, panel);
-                frame.pack();
-                frame.setLocationByPlatform(true);
-                frame.setVisible(true);
-                frame.setResizable(false);
-                input.requestFocus();
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            panel.setOpaque(true);
+
+            JTextArea textArea = new JTextArea(15, 50);
+            textArea.setWrapStyleWord(true);
+            textArea.setEditable(false);
+            //textArea.setFont(Font.getFont(Font.SANS_SERIF));
+
+            textArea.append("Username: " + user.getName() + "\n");
+            if (user.getCurrentlyViewed() != null) {
+                textArea.append("Currently Viewed: " + user.getCurrentlyViewed().getName() + "\n");
+            }
+            textArea.append("Join date: " + user.getJoinDate() + "\n");
+
+            JScrollPane scroller = new JScrollPane(textArea);
+            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            JPanel inputpanel = new JPanel();
+            inputpanel.setLayout(new FlowLayout());
+            JTextField input = new JTextField(20);
+            JButton button = new JButton("Enter");
+            DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+            panel.add(scroller);
+            inputpanel.add(input);
+            inputpanel.add(button);
+            panel.add(inputpanel);
+            frame.getContentPane().add(BorderLayout.CENTER, panel);
+            frame.pack();
+            frame.setLocationByPlatform(true);
+            frame.setVisible(true);
+            frame.setResizable(false);
+            input.requestFocus();
         });
     }
 }
