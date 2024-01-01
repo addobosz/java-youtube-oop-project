@@ -15,6 +15,9 @@ public class Frame extends JFrame {
         for (UserAccount user : simulationManager.getInstance().getAllUsers()) {
             gui.addUserToList(user);
         }
+        for (Channel channel : simulationManager.getInstance().getAllChannels()) {
+            gui.addChannelToList(channel);
+        }
 
         // Initialize the gui class and set its panel as content pane
         setContentPane(gui.getPanel1());
