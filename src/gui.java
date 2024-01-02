@@ -5,7 +5,6 @@ import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -18,6 +17,8 @@ public class gui {
     private JList listChannels;
     private JLabel listUserLabel;
     private JLabel listChannelsLabel;
+    private JTextField searchTextField;
+    private JButton searchButton;
     private DefaultListModel listUsersModel;
     private DefaultListModel listChannelsModel;
     private ArrayList<UserAccount> users;
@@ -118,7 +119,7 @@ public class gui {
 
                 if (user.getStream() != null) {
                     textArea.append("Currently Streaming: " + user.getStream().getName() + "\n");
-                    ImageIcon streamThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getStream().getThumbnail()));
+                    ImageIcon streamThumbnail = new ImageIcon(ClassLoader.getSystemResource("images/alert.gif"));
                     JLabel imageLabel = new JLabel(streamThumbnail);
                     panel.add(imageLabel);
                 }
@@ -154,20 +155,174 @@ public class gui {
 
             JPanel optionsPanel = new JPanel();
             optionsPanel.setLayout(new FlowLayout());
+
             JButton videosButton = new JButton("Show videos");
             JButton streamsButton = new JButton("Show stream");
             JButton subscribersButton = new JButton("Show subscribers");
             JButton followingButton = new JButton("Show following");
             JButton likedVideosButton = new JButton("Show liked videos");
 
-            JPanel inputpanel = new JPanel();
-            inputpanel.setLayout(new FlowLayout());
-            JTextField input = new JTextField(20);
-            JButton button = new JButton("Enter");
+            videosButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Channel user = channels.get(userIndex);
+                    EventQueue.invokeLater(() -> {
+                        JFrame buttonFrame = new JFrame(user.getName()+ "'s videos");
+                        ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                        buttonFrame.setIconImage(userThumbnail.getImage());
+                        buttonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        try {
+                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
+                        JPanel panelButton = new JPanel();
+                        panelButton.setLayout(new BoxLayout(panelButton, BoxLayout.Y_AXIS));
+                        panelButton.setOpaque(true);
+
+                        for (Video video : user.getUploadedVideos()) {
+                            JLabel videoLabel = new JLabel(video.getName());
+                            JLabel descriptionLabel = new JLabel("Description: " + video.getDescription());
+                            JLabel likesLabel = new JLabel("Likes: " + video.getNumberOfLikes());
+                            JLabel viewsLabel = new JLabel("Views: " + video.getNumberOfViews());
+                            JLabel durationLabel = new JLabel("Duration: " + video.getDuration() + " seconds");
+                            JLabel dateLabel = new JLabel("Date: " + video.getUploadDate());
+                            JLabel premiumLabel = new JLabel("Premium: " + video.getPremium());
+                            JLabel authorLabel = new JLabel("Author: " + video.getAuthor().getName());
+
+                            ImageIcon videoThumbnail = new ImageIcon(ClassLoader.getSystemResource(video.getThumbnail()));
+                            videoLabel.setIcon(videoThumbnail);
+
+                            panelButton.add(videoLabel);
+                            panelButton.add(descriptionLabel);
+                            panelButton.add(likesLabel);
+                            panelButton.add(viewsLabel);
+                            panelButton.add(durationLabel);
+                            panelButton.add(dateLabel);
+                            panelButton.add(premiumLabel);
+                            panelButton.add(authorLabel);
+                        }
+
+                        JScrollPane scroller = new JScrollPane(panelButton);
+                        scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                        scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                        buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                        buttonFrame.pack();
+                        buttonFrame.setLocationByPlatform(true);
+                        buttonFrame.setVisible(true);
+                        buttonFrame.setResizable(true);
+                    });
+                }
+            });
+
+            streamsButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Channel user = channels.get(userIndex);
+                    EventQueue.invokeLater(() -> {
+                        JFrame buttonFrame = new JFrame(user.getName()+ "'s stream");
+                        ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                        buttonFrame.setIconImage(userThumbnail.getImage());
+                        buttonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        try {
+                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
+                        JPanel panelButton = new JPanel();
+                        panelButton.setLayout(new BoxLayout(panelButton, BoxLayout.Y_AXIS));
+                        panelButton.setOpaque(true);
+
+                        if (user.getStream() != null) {
+                            Stream stream = user.getStream();
+                            JLabel streamLabel = new JLabel(stream.getName());
+                            JLabel descriptionLabel = new JLabel("Description: " + stream.getDescription());
+                            JLabel likesLabel = new JLabel("Likes: " + stream.getNumberOfLikes());
+                            JLabel viewsLabel = new JLabel("Number of viewers: " + stream.getNumberOfViewers());
+                            JLabel dateLabel = new JLabel("Date: " + stream.getStartTime());
+                            JLabel premiumLabel = new JLabel("Premium: " + stream.getNumberOfLikes());
+                            JLabel authorLabel = new JLabel("Author: " + stream.getAuthor().getName());
+
+                            ImageIcon streamThumbnail = new ImageIcon(ClassLoader.getSystemResource(stream.getThumbnail()));
+                            streamLabel.setIcon(streamThumbnail);
+
+                            panelButton.add(streamLabel);
+                            panelButton.add(descriptionLabel);
+                            panelButton.add(likesLabel);
+                            panelButton.add(viewsLabel);
+                            panelButton.add(dateLabel);
+                            panelButton.add(premiumLabel);
+                            panelButton.add(authorLabel);
+                            JScrollPane scroller = new JScrollPane(panelButton);
+                            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                            buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                            buttonFrame.pack();
+                            buttonFrame.setLocationByPlatform(true);
+                            buttonFrame.setVisible(true);
+                            buttonFrame.setResizable(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "This channel is currently offline!");
+                        }
+                    });
+                }
+            });
+
+            subscribersButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Channel user = channels.get(userIndex);
+                    EventQueue.invokeLater(() -> {
+                        JFrame buttonFrame = new JFrame(user.getName()+ "'s subscribers");
+                        ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                        buttonFrame.setIconImage(userThumbnail.getImage());
+                        buttonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        try {
+                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
+                        JPanel panelButton = new JPanel();
+                        panelButton.setLayout(new BoxLayout(panelButton, BoxLayout.Y_AXIS));
+                        panelButton.setOpaque(true);
+                        if (user.getFollowers().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "This channel has no subscribers!");
+                        } else {
+                            for (UserAccount subscriber : user.getFollowers()) {
+                                JLabel subscriberLabel = new JLabel(subscriber.getName());
+                                JLabel joinDateLabel = new JLabel("Join date: " + subscriber.getJoinDate());
+                                JLabel premiumLabel = new JLabel("Premium: " + subscriber.getPremium());
+
+                                ImageIcon subscriberThumbnail = new ImageIcon(ClassLoader.getSystemResource(subscriber.getThumbnail()));
+                                subscriberLabel.setIcon(subscriberThumbnail);
+
+                                panelButton.add(subscriberLabel);
+                                panelButton.add(joinDateLabel);
+                                panelButton.add(premiumLabel);
+                                JScrollPane scroller = new JScrollPane(panelButton);
+                                scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                                scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                                buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                                buttonFrame.pack();
+                                buttonFrame.setLocationByPlatform(true);
+                                buttonFrame.setVisible(true);
+                                buttonFrame.setResizable(true);
+                            }
+                        }
+                    });
+                }
+            });
+
             DefaultCaret caret = (DefaultCaret) textArea.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
             panel.add(scroller);
+
             if (isChannel) {
                 optionsPanel.add(videosButton);
                 optionsPanel.add(streamsButton);
@@ -177,17 +332,12 @@ public class gui {
                 optionsPanel.add(likedVideosButton);
             }
 
-            inputpanel.add(input);
-            inputpanel.add(button);
             panel.add(optionsPanel);
-            panel.add(inputpanel);
-
             frame.getContentPane().add(BorderLayout.CENTER, panel);
             frame.pack();
             frame.setLocationByPlatform(true);
             frame.setVisible(true);
             frame.setResizable(true);
-            input.requestFocus();
         });
     }
 

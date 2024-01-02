@@ -28,7 +28,7 @@ public class Channel extends UserAccount implements Runnable {
     public synchronized void startStream(Stream stream) {
         this.stopStream();
         this.setStream(stream);
-        System.out.println(stream.getName()+" stream has just started.");
+        System.out.println(stream.getAuthor().getName() + "'s stream '" + stream.getName()+"' has just started.");
     }
 
     public synchronized void stopStream() {

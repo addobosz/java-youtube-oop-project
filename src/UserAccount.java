@@ -34,6 +34,7 @@ public class UserAccount implements UserInterface, Runnable {
         if (!this.mFollowingChannels.contains(channel)) {
             channel.addFollower(this);
             this.mFollowingChannels.add(channel);
+            System.out.println(this.getName()+" has subscribed to "+channel.getName()+".");
         }
     }
     @Override
@@ -44,19 +45,19 @@ public class UserAccount implements UserInterface, Runnable {
     @Override
     public synchronized void watchVideo(Video video) {
         if (video.getPremium() && !this.getPremium()) {
-            System.out.println("You need to be a premium user to watch this video.");
+            //System.out.println("You need to be a premium user to watch this video.");
         } else {
             this.setCurrentlyViewed(video);
             this.setVideoStartTime(System.currentTimeMillis());
             video.setNumberOfViews(video.getNumberOfViews() + 1);
-            System.out.println(this.getName()+" is watching "+video.getName()+".");
+            //System.out.println(this.getName()+" is watching "+video.getName()+".");
         }
     }
     @Override
     public synchronized void watchStream(Stream stream) {
         this.setCurrentlyViewed(stream);
         stream.setNumberOfViewers(stream.getNumberOfViewers() + 1);
-        System.out.println(this.getName()+" is watching "+stream.getName()+".");
+        //System.out.println(this.getName()+" is watching "+stream.getName()+".");
     }
     @Override
     public synchronized void stopWatchingStream() {
@@ -69,6 +70,7 @@ public class UserAccount implements UserInterface, Runnable {
         if (!this.mLikedVideos.contains(video)) { // only works if the video is not already liked
             video.setNumberOfLikes(video.getNumberOfLikes() + 1);
             this.mLikedVideos.add(video);
+            System.out.println(this.getName()+" has liked " + video.getAuthor().getName() + "'s video '" + video.getName() + "'.");
         }
     }
     @Override
