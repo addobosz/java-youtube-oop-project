@@ -12,11 +12,11 @@ public class RandomThumbnailPicker {
 
     public static String getRandomUserPicture() {
         File file = userPictures[UserAccountFactory.random.nextInt(userPictures.length)];
-        return file.getName();
+        return "images/user-pictures/"+file.getName();
     }
 
     public static String getRandomVideoThumbnail() {
         File file = videoThumbnails[UserAccountFactory.random.nextInt(videoThumbnails.length)];
-        return file.getName();
+        return "images/video-thumbnails/"+file.getName();
     }
 }

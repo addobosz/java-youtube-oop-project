@@ -16,22 +16,22 @@ public class Channel extends UserAccount implements Runnable {
         simulationManager.getInstance().addChannel(this);
     }
 
-    public void addVideo(Video video) {
+    public synchronized void addVideo(Video video) {
         this.mUploadedVideos.add(video);
     }
 
-    public void deleteVideo(Video video) {
+    public synchronized void deleteVideo(Video video) {
         this.mUploadedVideos.remove(video);
         simulationManager.getInstance().getAllVideos().remove(video);
     }
 
-    public void startStream(Stream stream) {
+    public synchronized void startStream(Stream stream) {
         this.stopStream();
         this.setStream(stream);
         System.out.println(stream.getName()+" stream has just started.");
     }
 
-    public void stopStream() {
+    public synchronized void stopStream() {
         simulationManager.getInstance().getAllStreams().remove(this.getStream());
         this.setStream(null);
     }
@@ -47,7 +47,7 @@ public class Channel extends UserAccount implements Runnable {
                         this.stopStream();
                     }
                 } else if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of starting a stream every second. Scheduled streams cancel randomly instantiated streams.
-                    Stream stream = new Stream("thumbnail", UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), 0, 0, 0, this);
+                    Stream stream = new Stream(RandomThumbnailPicker.getRandomVideoThumbnail(), UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), 0, 0, 0, this);
                     this.startStream(stream);
                 }
                 if (UserAccountFactory.random.nextInt(100) < 1) { // 1% chance of uploading a video every second
@@ -55,7 +55,7 @@ public class Channel extends UserAccount implements Runnable {
                     int duration = UserAccountFactory.random.nextInt(60)+1; // 1-60 seconds of length (both inclusive)
                     int numberOfViews = UserAccountFactory.random.nextInt(2001) + numberOfLikes; // at least as many views as likes
                     boolean isPremium = UserAccountFactory.random.nextBoolean();
-                    this.addVideo(new Video("thumbnail", UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), numberOfLikes, duration, RandomDatePicker.getInstance().getRandomDate(), numberOfViews, isPremium, this));
+                    this.addVideo(new Video(RandomThumbnailPicker.getRandomVideoThumbnail(), UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), numberOfLikes, duration, RandomDatePicker.getInstance().getRandomDate(), numberOfViews, isPremium, this));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

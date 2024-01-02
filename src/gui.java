@@ -45,7 +45,7 @@ public class gui {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) { // Prevents double window on selection
                     int selectedUserIndex = listUsers.getSelectedIndex();
-                    createFrame(selectedUserIndex);
+                    createFrame(selectedUserIndex, false);
                 }
             }
         });
@@ -53,7 +53,10 @@ public class gui {
         listChannels.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-
+                if (!e.getValueIsAdjusting()) { // Prevents double window on selection
+                    int selectedChannelIndex = listChannels.getSelectedIndex();
+                    createFrame(selectedChannelIndex, true);
+                }
             }
         });
     }
@@ -61,7 +64,6 @@ public class gui {
     public void refreshUsersList() {
         listUsersModel.removeAllElements();
         for (UserAccount user : users) {
-            System.out.println("adding user to list "+user.getName());
             listUsersModel.addElement(user.getName());
         }
     }
@@ -69,7 +71,6 @@ public class gui {
     public void refreshChannelsList() {
         listChannelsModel.removeAllElements();
         for (Channel channel : channels) {
-            System.out.println("adding channel to list "+channel.getName());
             listChannelsModel.addElement(channel.getName());
         }
     }
@@ -84,10 +85,15 @@ public class gui {
         refreshChannelsList();
     }
 
-    public void createFrame(int userIndex) { // method to create a popup window with user/channel data
-        UserAccount user = users.get(userIndex);
+    public void createFrame(int userIndex, boolean isChannel) { // method to create a popup window with user/channel data
+        String title;
+        if (isChannel) {
+            title = "Channel data";
+        } else {
+            title = "User data";
+        }
         EventQueue.invokeLater(() -> {
-            JFrame frame = new JFrame("User Data");
+            JFrame frame = new JFrame(title);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             try
             {
@@ -100,27 +106,60 @@ public class gui {
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             panel.setOpaque(true);
 
-            JTextArea textArea = new JTextArea(15, 50);
+            JTextArea textArea = new JTextArea(7, 50);
             textArea.setWrapStyleWord(true);
             textArea.setEditable(false);
             Font textAreaFont = new Font("Arial", Font.PLAIN, 16); // Font(name, style, size)
             textArea.setFont(textAreaFont);
 
-            textArea.append("Username: " + user.getName() + "\n");
-            if (user.getCurrentlyViewed() != null) {
-                textArea.append("Currently Viewed: " + user.getCurrentlyViewed().getName() + "by " + user.getCurrentlyViewed().getAuthor().getName() + "\n");
-            }
-            textArea.append("Join date: " + user.getJoinDate() + "\n");
-            textArea.append("Premium: " + user.getPremium() + "\n");
-            textArea.append("Followed channels: " + user.getFollowingChannels().size() + "\n");
-            textArea.append("Queue size: " + user.getQueue().size() + "\n");
+            if (isChannel) {
+                Channel user = channels.get(userIndex);
+                textArea.append("Username: " + user.getName() + "\n");
 
-            ImageIcon thumbnail = new ImageIcon(ClassLoader.getSystemResource("images/thumbnails/"+user.getThumbnail()));
-            JLabel imageLabel = new JLabel(thumbnail);
+                if (user.getStream() != null) {
+                    textArea.append("Currently Streaming: " + user.getStream().getName() + "\n");
+                    ImageIcon streamThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getStream().getThumbnail()));
+                    JLabel imageLabel = new JLabel(streamThumbnail);
+                    panel.add(imageLabel);
+                }
+                textArea.append("Join date: " + user.getJoinDate() + "\n");
+                textArea.append("Premium: " + user.getPremium() + "\n");
+                textArea.append("Subscriptions: " + user.getFollowers().size() + "\n");
+                textArea.append("Number of uploaded videos: " + user.getUploadedVideos().size() + "\n");
+
+                ImageIcon thumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                JLabel imageLabel = new JLabel(thumbnail);
+                frame.setIconImage(thumbnail.getImage());
+                panel.add(imageLabel);
+            } else {
+                UserAccount user = users.get(userIndex);
+                ImageIcon thumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                JLabel imageLabel = new JLabel(thumbnail);
+                panel.add(imageLabel);
+                frame.setIconImage(thumbnail.getImage());
+                textArea.append("Username: " + user.getName() + "\n");
+                if (user.getCurrentlyViewed() != null) {
+                    textArea.append("Currently Viewed: " + user.getCurrentlyViewed().getName() + " by " + user.getCurrentlyViewed().getAuthor().getName() + "\n");
+                }
+                textArea.append("Join date: " + user.getJoinDate() + "\n");
+                textArea.append("Premium: " + user.getPremium() + "\n");
+                textArea.append("Followed channels: " + user.getFollowingChannels().size() + "\n");
+
+                textArea.append("Queue size: " + user.getQueue().size() + "\n");
+            }
 
             JScrollPane scroller = new JScrollPane(textArea);
             scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            JPanel optionsPanel = new JPanel();
+            optionsPanel.setLayout(new FlowLayout());
+            JButton videosButton = new JButton("Show videos");
+            JButton streamsButton = new JButton("Show stream");
+            JButton subscribersButton = new JButton("Show subscribers");
+            JButton followingButton = new JButton("Show following");
+            JButton likedVideosButton = new JButton("Show liked videos");
+
             JPanel inputpanel = new JPanel();
             inputpanel.setLayout(new FlowLayout());
             JTextField input = new JTextField(20);
@@ -128,10 +167,19 @@ public class gui {
             DefaultCaret caret = (DefaultCaret) textArea.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-            panel.add(imageLabel);
             panel.add(scroller);
+            if (isChannel) {
+                optionsPanel.add(videosButton);
+                optionsPanel.add(streamsButton);
+                optionsPanel.add(subscribersButton);
+            } else {
+                optionsPanel.add(followingButton);
+                optionsPanel.add(likedVideosButton);
+            }
+
             inputpanel.add(input);
             inputpanel.add(button);
+            panel.add(optionsPanel);
             panel.add(inputpanel);
 
             frame.getContentPane().add(BorderLayout.CENTER, panel);
