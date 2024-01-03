@@ -1,13 +1,19 @@
+import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 // This class realizes the Singleton design pattern
-class simulationManager {
-    private static final simulationManager instance = new simulationManager();
-    private final List<Channel> allChannels = new ArrayList<>();
-    private final List<UserAccount> allUsers = new ArrayList<>();
-    private final List<Video> allVideos = new ArrayList<>();
-    private final List<Stream> allStreams = new ArrayList<>();
+class simulationManager implements Serializable {
+    private static volatile simulationManager instance = new simulationManager();
+    private volatile List<Channel> allChannels = new ArrayList<>();
+    private volatile List<UserAccount> allUsers = new ArrayList<>();
+    private volatile List<Video> allVideos = new ArrayList<>();
+    private volatile List<Stream> allStreams = new ArrayList<>();
+    static volatile ArrayList<Thread> agentThreads = new ArrayList<>();
+    static boolean isRunning = false;
+    @Serial
+    private static final long serialVersionUID = 6529685098267757690L;
     private simulationManager() {
         // Private constructor to prevent instantiation
     }
@@ -26,17 +32,23 @@ class simulationManager {
     public void addStream(Stream stream) {
         allStreams.add(stream);
     }
-    public void initializeSimulation(int numberOfUsers, int numberOfChannels) {
+    public static void initializeSimulation(int numberOfUsers, int numberOfChannels) {
         UserAccountFactory.initializeUsers(numberOfUsers);
         UserAccountFactory.initializeChannels(numberOfChannels);
         UserAccountFactory.createVideos();
         UserAccountFactory.createStreams();
     }
 
-    public void startSimulation() {
-        for (Thread thread : UserAccountFactory.agentThreads) {
+    public static void startSimulation() {
+        isRunning = true;
+        for (Thread thread : agentThreads) {
             thread.start();
         }
+    }
+
+    public static void stopSimulation() {
+        isRunning = false;
+        System.out.println("\nStopping simulation...\n");
     }
 
     public List<UserAccount> search(String name) {
@@ -47,6 +59,43 @@ class simulationManager {
             }
         }
         return resultChannels;
+    }
+
+    public static void saveState() { // Saving the state of the simulation using serialization.
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("simulationManager.ser"))) {
+            oos.writeObject(simulationManager.getInstance());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadState() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("simulationManager.ser"))) { // Loading the state of the simulation using deserialization.
+            // Remove all existing channels, users, videos and streams
+            instance.getAllChannels().clear();
+            instance.getAllUsers().clear();
+            instance.getAllVideos().clear();
+            instance.getAllStreams().clear();
+            // Remove all existing threads
+            agentThreads.clear();
+            // Cast the deserialized object to the appropriate type and assign it to the instance variable
+            instance = (simulationManager) ois.readObject();
+            // Reload the old threads
+            isRunning = true;
+            for (Channel channel : instance.getAllChannels()) {
+                Thread channelThread = new Thread(channel);
+                agentThreads.add(channelThread);
+            }
+//            for (UserAccount user : instance.getAllUsers()) {
+//                Thread userThread = new Thread(user);
+//                agentThreads.add(userThread);
+//            }
+            startSimulation();
+            System.out.println("Simulation loaded successfully.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //getters

@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -11,8 +10,6 @@ public class UserAccountFactory {
     static RandomLinePicker randomVideoTitlePicker = new RandomLinePicker("src/text_files/video_titles.txt");
     static RandomLinePicker randomDescriptionPicker = new RandomLinePicker("src/text_files/descriptions.txt");
     static Random random = new Random();
-    static ArrayList<Thread> agentThreads = new ArrayList<>();
-
 
     private UserAccountFactory() {
         // Private constructor to prevent instantiation
@@ -23,7 +20,7 @@ public class UserAccountFactory {
             boolean is_premium = random.nextBoolean();
             UserAccount user = new UserAccount(RandomThumbnailPicker.getRandomUserPicture(), randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), is_premium, null, new ArrayList<Media>());
             Thread userThread = new Thread(user);
-            agentThreads.add(userThread);
+            simulationManager.agentThreads.add(userThread);
         }
     }
 
@@ -31,7 +28,7 @@ public class UserAccountFactory {
         for (int i = 0; i < n; i++) {
             Channel channel = new Channel(RandomThumbnailPicker.getRandomUserPicture(), randomChannelNamePicker.getRandomLine(), RandomDatePicker.getInstance().getRandomDate(), new ArrayList<Channel>(), false, null, new ArrayList<Media>(), new ArrayList<UserAccount>(), new ArrayList<Video>(), null);
             Thread channelThread = new Thread(channel);
-            agentThreads.add(channelThread);
+            simulationManager.agentThreads.add(channelThread);
         }
     }
 

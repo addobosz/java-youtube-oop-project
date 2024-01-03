@@ -27,6 +27,10 @@ public class Channel extends UserAccount implements Runnable {
 
     public synchronized void startStream(Stream stream) {
         this.stopStream();
+        // check is the author still exists (if not, the stream is cancelled)
+        if (!simulationManager.getInstance().getAllChannels().contains(stream.getAuthor())) {
+            return;
+        }
         this.setStream(stream);
         System.out.println(stream.getAuthor().getName() + "'s stream '" + stream.getName()+"' has just started.");
     }
@@ -39,7 +43,8 @@ public class Channel extends UserAccount implements Runnable {
     @Override
     public void run() {
         super.run(); // Channels have to act as both users and channels.
-        while (true) {
+        while (simulationManager.isRunning) {
+            System.out.println(this.getName()+" is running.");
             try {
                 semStream.acquire();
                 if (this.getStream() != null) {
@@ -56,6 +61,7 @@ public class Channel extends UserAccount implements Runnable {
                     int numberOfViews = UserAccountFactory.random.nextInt(2001) + numberOfLikes; // at least as many views as likes
                     boolean isPremium = UserAccountFactory.random.nextBoolean();
                     this.addVideo(new Video(RandomThumbnailPicker.getRandomVideoThumbnail(), UserAccountFactory.randomVideoTitlePicker.getRandomLine(), UserAccountFactory.randomDescriptionPicker.getRandomLine(), numberOfLikes, duration, RandomDatePicker.getInstance().getRandomDate(), numberOfViews, isPremium, this));
+                    System.out.println(this.getName()+" has uploaded a new video.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -65,7 +71,8 @@ public class Channel extends UserAccount implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Thread interrupted. Exiting.");
+                return;
             }
         }
     }

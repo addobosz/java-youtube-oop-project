@@ -1,4 +1,6 @@
-public class Media {
+import java.io.Serializable;
+
+public class Media implements Serializable {
     protected String mThumbnail;
     protected String mName;
     protected String mDescription;

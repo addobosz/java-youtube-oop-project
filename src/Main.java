@@ -4,11 +4,12 @@ public class Main {
     public static void main(String[] args) {
 
         // Initialize the simulation
-        simulationManager.getInstance().initializeSimulation(10,10);
-        // Start the simulation
-        simulationManager.getInstance().startSimulation();
+        simulationManager.initializeSimulation(10,10);
 
-        // Display the GUI
+        // Start the simulation
+        simulationManager.startSimulation();
+
+        //Display the GUI
         SwingUtilities.invokeLater(() -> {
             Frame frame = new Frame();
             frame.pack();

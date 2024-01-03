@@ -1,9 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.Semaphore;
 
-public class UserAccount implements UserInterface, Runnable {
+public class UserAccount implements UserInterface, Runnable, Serializable {
     protected String mThumbnail;
     protected String mName;
     protected Date mJoinDate;
@@ -77,7 +77,7 @@ public class UserAccount implements UserInterface, Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (simulationManager.isRunning) {
             try {
                 semWatch.acquire();
                 Media curr = this.getCurrentlyViewed(); // create local variable to prevent errors due to the video being set to null in the middle of the execution
@@ -140,7 +140,8 @@ public class UserAccount implements UserInterface, Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Thread interrupted. Exiting.");
+                return;
             }
         }
     }

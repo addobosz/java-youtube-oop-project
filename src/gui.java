@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 
 public class gui {
     private JButton clickMeButton;
@@ -19,6 +21,8 @@ public class gui {
     private JLabel listChannelsLabel;
     private JTextField searchTextField;
     private JButton searchButton;
+    private JButton saveButton;
+    private JButton loadButton;
     private DefaultListModel listUsersModel;
     private DefaultListModel listChannelsModel;
     private ArrayList<UserAccount> users;
@@ -78,8 +82,39 @@ public class gui {
            }
         });
 
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                simulationManager.saveState();
+                System.out.println("\nState saved!\n");
+            }
+        });
 
-
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                simulationManager.stopSimulation();
+                JFrame oldFrame = (JFrame) SwingUtilities.getWindowAncestor(getPanel1());
+                try {
+                    // Wait for the simulation to stop
+                    for (Thread thread : simulationManager.agentThreads) {
+                        thread.join();
+                    }
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                simulationManager.loadState();
+                System.out.println("\nState loaded!\n");
+                SwingUtilities.invokeLater(() -> {
+                    Frame frame = new Frame();
+                    frame.pack();
+                    frame.setVisible(true);
+                });
+                if (oldFrame != null) {
+                    oldFrame.dispose();
+                }
+            }
+        });
 
         users = new ArrayList<UserAccount>();
         listUsersModel = new DefaultListModel<>();
