@@ -31,7 +31,7 @@ public class UserAccount implements UserInterface, Runnable {
     // Special methods
     @Override
     public synchronized void subscribe(Channel channel) {
-        if (!this.mFollowingChannels.contains(channel)) {
+        if ((!this.mFollowingChannels.contains(channel)) && (channel != this)) { // if the user is not already subscribed to the channel and the channel is not the user itself
             channel.addFollower(this);
             this.mFollowingChannels.add(channel);
             System.out.println(this.getName()+" has subscribed to "+channel.getName()+".");
@@ -65,6 +65,7 @@ public class UserAccount implements UserInterface, Runnable {
         stream.setNumberOfViewers(stream.getNumberOfViewers() - 1);
         this.setCurrentlyViewed(null);
     }
+    @Override
     public synchronized void likeVideo() {
         Video video = (Video) this.getCurrentlyViewed();
         if (!this.mLikedVideos.contains(video)) { // only works if the video is not already liked
@@ -185,6 +186,10 @@ public class UserAccount implements UserInterface, Runnable {
     public long getVideoStartTime() {
         return mVideoStartTime;
     }
+    @Override
+    public ArrayList<Video> getLikedVideos() {
+        return mLikedVideos;
+    }
 
     // Setters
     @Override
@@ -218,5 +223,9 @@ public class UserAccount implements UserInterface, Runnable {
     @Override
     public void setVideoStartTime(long videoStartTime) {
         this.mVideoStartTime = videoStartTime;
+    }
+    @Override
+    public void setLikedVideos(ArrayList<Video> likedVideos) {
+        this.mLikedVideos = likedVideos;
     }
 }

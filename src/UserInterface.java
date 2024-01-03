@@ -20,6 +20,8 @@ public interface UserInterface {
 
     long getVideoStartTime();
 
+    ArrayList<Video> getLikedVideos();
+
     // Setters
     void setThumbnail(String thumbnail);
 
@@ -37,6 +39,8 @@ public interface UserInterface {
 
     void setVideoStartTime(long videoStartTime);
 
+    void setLikedVideos(ArrayList<Video> likedVideos);
+
     // Additional methods
     void subscribe(Channel channel);
 
@@ -47,6 +51,8 @@ public interface UserInterface {
     void watchStream(Stream stream);
 
     void stopWatchingStream();
+
+    void likeVideo();
 
     List<Channel> search(String name);
 }

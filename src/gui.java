@@ -145,7 +145,7 @@ public class gui {
                 textArea.append("Join date: " + user.getJoinDate() + "\n");
                 textArea.append("Premium: " + user.getPremium() + "\n");
                 textArea.append("Followed channels: " + user.getFollowingChannels().size() + "\n");
-
+                textArea.append("Liked videos: " + user.getLikedVideos().size() + "\n");
                 textArea.append("Queue size: " + user.getQueue().size() + "\n");
             }
 
@@ -304,16 +304,122 @@ public class gui {
                                 panelButton.add(subscriberLabel);
                                 panelButton.add(joinDateLabel);
                                 panelButton.add(premiumLabel);
-                                JScrollPane scroller = new JScrollPane(panelButton);
-                                scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-                                scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-                                buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
-                                buttonFrame.pack();
-                                buttonFrame.setLocationByPlatform(true);
-                                buttonFrame.setVisible(true);
-                                buttonFrame.setResizable(true);
                             }
+                            JScrollPane scroller = new JScrollPane(panelButton);
+                            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                            buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                            buttonFrame.pack();
+                            buttonFrame.setLocationByPlatform(true);
+                            buttonFrame.setVisible(true);
+                            buttonFrame.setResizable(true);
+                        }
+                    });
+                }
+            });
+
+            likedVideosButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    UserAccount user = users.get(userIndex);
+                    EventQueue.invokeLater(() -> {
+                        JFrame buttonFrame = new JFrame(user.getName()+ "'s liked videos");
+                        ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                        buttonFrame.setIconImage(userThumbnail.getImage());
+                        buttonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        try {
+                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
+                        JPanel panelButton = new JPanel();
+                        panelButton.setLayout(new BoxLayout(panelButton, BoxLayout.Y_AXIS));
+                        panelButton.setOpaque(true);
+                        if (user.getLikedVideos().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "This user has no liked videos!");
+                        } else {
+                            for (Video video : user.getLikedVideos()) {
+                                JLabel videoLabel = new JLabel(video.getName());
+                                JLabel descriptionLabel = new JLabel("Description: " + video.getDescription());
+                                JLabel likesLabel = new JLabel("Likes: " + video.getNumberOfLikes());
+                                JLabel viewsLabel = new JLabel("Views: " + video.getNumberOfViews());
+                                JLabel durationLabel = new JLabel("Duration: " + video.getDuration() + " seconds");
+                                JLabel dateLabel = new JLabel("Date: " + video.getUploadDate());
+                                JLabel premiumLabel = new JLabel("Premium: " + video.getPremium());
+                                JLabel authorLabel = new JLabel("Author: " + video.getAuthor().getName());
+
+                                ImageIcon videoThumbnail = new ImageIcon(ClassLoader.getSystemResource(video.getThumbnail()));
+                                videoLabel.setIcon(videoThumbnail);
+
+                                panelButton.add(videoLabel);
+                                panelButton.add(descriptionLabel);
+                                panelButton.add(likesLabel);
+                                panelButton.add(viewsLabel);
+                                panelButton.add(durationLabel);
+                                panelButton.add(dateLabel);
+                                panelButton.add(premiumLabel);
+                                panelButton.add(authorLabel);
+                            }
+                            JScrollPane scroller = new JScrollPane(panelButton);
+                            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                            buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                            buttonFrame.pack();
+                            buttonFrame.setLocationByPlatform(true);
+                            buttonFrame.setVisible(true);
+                            buttonFrame.setResizable(true);
+                        }
+                    });
+                }
+            });
+
+            followingButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    UserAccount user = users.get(userIndex);
+                    EventQueue.invokeLater(() -> {
+                        JFrame buttonFrame = new JFrame(user.getName()+ "'s following");
+                        ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                        buttonFrame.setIconImage(userThumbnail.getImage());
+                        buttonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        try {
+                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
+                        JPanel panelButton = new JPanel();
+                        panelButton.setLayout(new BoxLayout(panelButton, BoxLayout.Y_AXIS));
+                        panelButton.setOpaque(true);
+                        if (user.getFollowingChannels().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "This user is not following any channels!");
+                        } else {
+                            for (Channel channel : user.getFollowingChannels()) {
+                                JLabel channelLabel = new JLabel(channel.getName());
+                                JLabel subscriptionNumber = new JLabel("Subscriptions: " + channel.getFollowers().size());
+                                JLabel joinDateLabel = new JLabel("Join date: " + channel.getJoinDate());
+                                JLabel premiumLabel = new JLabel("Premium: " + channel.getPremium());
+
+                                ImageIcon channelThumbnail = new ImageIcon(ClassLoader.getSystemResource(channel.getThumbnail()));
+                                channelLabel.setIcon(channelThumbnail);
+
+                                panelButton.add(channelLabel);
+                                panelButton.add(subscriptionNumber);
+                                panelButton.add(joinDateLabel);
+                                panelButton.add(premiumLabel);
+                            }
+                            JScrollPane scroller = new JScrollPane(panelButton);
+                            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                            buttonFrame.getContentPane().add(BorderLayout.CENTER, scroller);
+                            buttonFrame.pack();
+                            buttonFrame.setLocationByPlatform(true);
+                            buttonFrame.setVisible(true);
+                            buttonFrame.setResizable(true);
                         }
                     });
                 }
@@ -339,6 +445,7 @@ public class gui {
             frame.setVisible(true);
             frame.setResizable(true);
         });
+
     }
 
     public JPanel getPanel1() {
