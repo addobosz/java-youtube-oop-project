@@ -53,6 +53,4 @@ public interface UserInterface {
     void stopWatchingStream();
 
     void likeVideo();
-
-    List<Channel> search(String name);
 }

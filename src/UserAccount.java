@@ -74,16 +74,7 @@ public class UserAccount implements UserInterface, Runnable {
             System.out.println(this.getName()+" has liked " + video.getAuthor().getName() + "'s video '" + video.getName() + "'.");
         }
     }
-    @Override
-    public synchronized List<Channel> search(String name) {
-        List<Channel> resultChannels = new ArrayList<>();
-        for (Channel channel : simulationManager.getInstance().getAllChannels()) {
-            if (channel.getName().contains(name)) {
-                resultChannels.add(channel);
-            }
-        }
-        return resultChannels;
-    }
+
     @Override
     public void run() {
         while (true) {

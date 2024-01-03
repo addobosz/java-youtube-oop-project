@@ -33,6 +33,54 @@ public class gui {
             }
         });
 
+        searchButton.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               String searchQuery = searchTextField.getText();
+               if (searchQuery.isEmpty()) {
+                   JOptionPane.showMessageDialog(null, "Please enter a search query!");
+               } else {
+                   EventQueue.invokeLater(() -> {
+                       JFrame frame = new JFrame("Search results");
+                       frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                       try {
+                           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Set the look and feel to the default user's system look and feel
+                       } catch (Exception exception) {
+                           exception.printStackTrace();
+                       }
+
+                       JPanel panel = new JPanel();
+                       panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                       panel.setOpaque(true);
+
+                       for (UserAccount user : simulationManager.getInstance().search(searchQuery)) {
+                           JLabel userLabel = new JLabel(user.getName());
+                           JLabel joinDateLabel = new JLabel("Join date: " + user.getJoinDate());
+                           JLabel premiumLabel = new JLabel("Premium: " + user.getPremium());
+                           ImageIcon userThumbnail = new ImageIcon(ClassLoader.getSystemResource(user.getThumbnail()));
+                           userLabel.setIcon(userThumbnail);
+                           panel.add(userLabel);
+                           panel.add(joinDateLabel);
+                            panel.add(premiumLabel);
+                       }
+
+                       JScrollPane scroller = new JScrollPane(panel);
+                       scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                       scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                       frame.getContentPane().add(BorderLayout.CENTER, scroller);
+                       panel.setVisible(true);
+                       frame.pack();
+                       frame.setLocationByPlatform(true);
+                       frame.setVisible(true);
+                   });
+               }
+           }
+        });
+
+
+
+
         users = new ArrayList<UserAccount>();
         listUsersModel = new DefaultListModel<>();
         listUsers.setModel(listUsersModel);
@@ -152,6 +200,7 @@ public class gui {
             JScrollPane scroller = new JScrollPane(textArea);
             scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            frame.getContentPane().add(BorderLayout.CENTER, scroller);
 
             JPanel optionsPanel = new JPanel();
             optionsPanel.setLayout(new FlowLayout());

@@ -39,6 +39,16 @@ class simulationManager {
         }
     }
 
+    public List<UserAccount> search(String name) {
+        List<UserAccount> resultChannels = new ArrayList<>();
+        for (UserAccount channel : this.getAllUsers()) {
+            if (channel.getName().contains(name)) {
+                resultChannels.add(channel);
+            }
+        }
+        return resultChannels;
+    }
+
     //getters
     public List<Channel> getAllChannels() {
         return allChannels;
