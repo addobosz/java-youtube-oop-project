@@ -42,9 +42,8 @@ public class Channel extends UserAccount implements Runnable {
 
     @Override
     public void run() {
-        super.run(); // Channels have to act as both users and channels.
+        // Channels have to act as both users and channels.
         while (simulationManager.isRunning) {
-            System.out.println(this.getName()+" is running.");
             try {
                 semStream.acquire();
                 if (this.getStream() != null) {

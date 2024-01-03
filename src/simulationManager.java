@@ -86,10 +86,11 @@ class simulationManager implements Serializable {
                 Thread channelThread = new Thread(channel);
                 agentThreads.add(channelThread);
             }
-//            for (UserAccount user : instance.getAllUsers()) {
-//                Thread userThread = new Thread(user);
-//                agentThreads.add(userThread);
-//            }
+            // Create new threads for users
+            for (UserAccount user : instance.getAllUsers()) {
+                Thread userThread = new Thread(user);
+                agentThreads.add(userThread);
+            }
             startSimulation();
             System.out.println("Simulation loaded successfully.");
 
