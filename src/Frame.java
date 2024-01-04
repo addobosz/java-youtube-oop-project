@@ -13,6 +13,7 @@ public class Frame extends JFrame {
         getContentPane().setBackground(Color.BLUE);
 
         setContentPane(existingGui.getPanel1());
+
         if (displaySetupDialog) {
             displaySetupDialog(); // if the user wants to load a simulation from a file, don't display the setup dialog
         }

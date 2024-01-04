@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e07438ad-5ef8-432a-849a-55e1ba8d5388" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Stream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Video.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2aVHRkttXJtWtkjPTgRWLI5UW2G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/LATITUDE 5500/Documents/sem3/op/java-youtube-oop-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/LATITUDE 5500/Documents/sem3/op/java-youtube-oop-project/src/untitled/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-249ae16d76d6-a618e4d4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e07438ad-5ef8-432a-849a-55e1ba8d5388" name="Changes" comment="" />
+      <created>1704396824702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704396824702</updated>
+      <workItem from="1704396829099" duration="688000" />
+      <workItem from="1704399065957" duration="55000" />
+      <workItem from="1704399124234" duration="698000" />
+      <workItem from="1704399830917" duration="5000" />
+      <workItem from="1704400022096" duration="217000" />
+      <workItem from="1704400370735" duration="573000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/untitled/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
