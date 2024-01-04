@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e07438ad-5ef8-432a-849a-55e1ba8d5388" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Channel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Media.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Media.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Stream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Video.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" afterDir="false" />
@@ -38,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -52,7 +63,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/LATITUDE 5500/Documents/sem3/op/java-youtube-oop-project/src/untitled/src/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -79,7 +90,7 @@
       <workItem from="1704399124234" duration="698000" />
       <workItem from="1704399830917" duration="5000" />
       <workItem from="1704400022096" duration="217000" />
-      <workItem from="1704400370735" duration="573000" />
+      <workItem from="1704400370735" duration="3282000" />
     </task>
     <servers />
   </component>

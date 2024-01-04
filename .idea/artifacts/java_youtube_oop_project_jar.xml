@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="java-youtube-oop-project:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/java_youtube_oop_project_jar</output-path>
+    <root id="archive" name="java-youtube-oop-project.jar">
+      <element id="module-output" name="java-youtube-oop-project" />
+    </root>
+  </artifact>
+</component>
