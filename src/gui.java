@@ -106,7 +106,7 @@ public class gui {
                 simulationManager.loadState();
                 System.out.println("\nState loaded!\n");
                 SwingUtilities.invokeLater(() -> {
-                    Frame frame = new Frame();
+                    Frame frame = new Frame(new gui(), false);
                     frame.pack();
                     frame.setVisible(true);
                 });
