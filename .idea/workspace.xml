@@ -1,31 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="java-youtube-oop-project:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e07438ad-5ef8-432a-849a-55e1ba8d5388" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Channel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Media.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Media.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Stream.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Video.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Channel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Media.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Stream.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserAccount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/Video.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-youtube-oop-project/gui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Channel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Frame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Frame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Media.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/RandomDatePicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/RandomLinePicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/RandomThumbnailPicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Stream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/UserAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/UserAccountFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/UserInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/java_youtube_oop_project_jar/java-youtube-oop-project.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Channel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Frame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Media.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/RandomDatePicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/RandomLinePicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/RandomThumbnailPicker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Stream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserAccountFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/UserInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/alert.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/icon_240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Artua-Ukrainian-Motifs-Male-User.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Custom-Icon-Design-Flatastic-4-Male-user-accept.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Dapino-Girl-In-A-Bunny-Suit-Girl-bunny-happy.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Fa-Team-Fontawesome-FontAwesome-User-Secret.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Guillendesign-Variations-2-User.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Christmas-Xp-Snow-Man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Female-Face-FC-5.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Male-Face-A1.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Male-Face-D2.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Groups-Military-Personnel-Light.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Office-Client-Male-Light.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Rest-Person-Coffee-Break-Male-Dark.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Iconshock-Super-Heros-Spider-man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Martin-Berube-Character-Girl.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Martin-Berube-Character-Man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Mazenl77-I-Like-Buttons-3a-Cute-Ball-Games.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Oxygen-Icons.org-Oxygen-Actions-resource-group.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/user-pictures/Zeusbox-Christmas-Ginger-man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/2150691429.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/2150970217.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/28090.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/404-error_10399835.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/crown_10345553.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/fish_9479958.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/hammer_9845347.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/pizza-box_9426173.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/pizza_706934.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/planning_10247242.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/shilling_10500548.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/startup_9571549.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/images/video-thumbnails/thinking_9798767.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/java-youtube-oop-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/alert.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/icon_240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Artua-Ukrainian-Motifs-Male-User.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Custom-Icon-Design-Flatastic-4-Male-user-accept.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Dapino-Girl-In-A-Bunny-Suit-Girl-bunny-happy.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Fa-Team-Fontawesome-FontAwesome-User-Secret.512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Guillendesign-Variations-2-User.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Christmas-Xp-Snow-Man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Female-Face-FC-5.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Male-Face-A1.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Hopstarter-Face-Avatars-Male-Face-D2.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Groups-Military-Personnel-Light.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Office-Client-Male-Light.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Icons-Land-Vista-People-Rest-Person-Coffee-Break-Male-Dark.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Iconshock-Super-Heros-Spider-man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Martin-Berube-Character-Girl.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Martin-Berube-Character-Man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Mazenl77-I-Like-Buttons-3a-Cute-Ball-Games.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Oxygen-Icons.org-Oxygen-Actions-resource-group.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/user-pictures/Zeusbox-Christmas-Ginger-man.256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/2150691429.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/2150970217.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/28090.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/404-error_10399835.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/crown_10345553.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/fish_9479958.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/hammer_9845347.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/pizza-box_9426173.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/pizza_706934.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/planning_10247242.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/shilling_10500548.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/startup_9571549.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/images/video-thumbnails/thinking_9798767.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/java-youtube-oop-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/text_files/channel_names.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/text_files/descriptions.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/out/production/java-youtube-oop-project/text_files/video_titles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/simulationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/text_files/channel_names.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/text_files/descriptions.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-youtube-oop-project/text_files/video_titles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/simulationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulationManager.ser" beforeDir="false" afterPath="$PROJECT_DIR$/simulationManager.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +187,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "21",
@@ -90,7 +226,7 @@
       <workItem from="1704399124234" duration="698000" />
       <workItem from="1704399830917" duration="5000" />
       <workItem from="1704400022096" duration="217000" />
-      <workItem from="1704400370735" duration="3282000" />
+      <workItem from="1704400370735" duration="7091000" />
     </task>
     <servers />
   </component>
