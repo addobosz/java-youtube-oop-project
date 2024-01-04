@@ -6,7 +6,7 @@ public class Channel extends UserAccount implements Runnable {
     private volatile ArrayList<UserAccount> mFollowers;
     private volatile ArrayList<Video> mUploadedVideos;
     private volatile Stream mStream;
-    private Semaphore semStream = new Semaphore(1);
+    private final Semaphore semStream = new Semaphore(1);
 
     public Channel(String thumbnail, String name, Date joinDate, ArrayList<Channel> followingChannels, boolean premium, Media currentlyViewed, ArrayList<Media> queue, ArrayList<UserAccount> followers, ArrayList<Video> uploadedVideos, Stream stream) {
         super(thumbnail, name, joinDate, followingChannels, premium, currentlyViewed, queue);
@@ -44,6 +44,7 @@ public class Channel extends UserAccount implements Runnable {
     public void run() {
         // Channels have to act as both users and channels.
         while (simulationManager.isRunning) {
+            // channel tasks
             try {
                 semStream.acquire();
                 if (this.getStream() != null) {
@@ -72,6 +73,66 @@ public class Channel extends UserAccount implements Runnable {
             } catch (InterruptedException e) {
                 System.out.println("Thread interrupted. Exiting.");
                 return;
+            }
+            // user tasks
+            try {
+                semWatch.acquire();
+                Media curr = this.getCurrentlyViewed(); // create local variable to prevent errors due to the video being set to null in the middle of the execution
+                if (curr != null) {
+                    if (curr instanceof Video) {
+                        if (UserAccountFactory.random.nextInt(1000) < 17) { // 1.7% chance of liking a video every second
+                            this.likeVideo();
+                        }
+                        if (this.mVideoStartTime + ((Video) curr).getDuration() * 1000L < System.currentTimeMillis()) { // if the video has ended
+                            this.setCurrentlyViewed(null);
+                        }
+                    }
+                    if (UserAccountFactory.random.nextInt(1000) < 17) {
+                        try {
+                            this.subscribe(curr.getAuthor()); // 1.7% chance of subscribing to the author of the video or stream every second
+                        } catch (Exception e) {
+                            System.out.println(curr);
+                            e.printStackTrace();
+                        }
+                    }
+                } else { // if the user is not watching anything, watch the next item in the queue
+                    if (!this.getQueue().isEmpty()) { // if the queue is not empty, watch the next item (either video or stream)
+                        Media next = this.getQueue().getFirst();
+                        this.getQueue().removeFirst();
+                        if (next instanceof Video) {
+                            this.watchVideo((Video) next);
+                        } else if (next instanceof Stream) {
+                            this.watchStream((Stream) next);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
+                semWatch.release();
+            }
+            try {
+                semQueue.acquire();
+
+                if (this.getQueue().size() < 10) { // if the queue is not full, add a random video or stream to the queue
+                    if (UserAccountFactory.random.nextBoolean()) { // 50% chance of adding a video
+                        Video video = simulationManager.getInstance().getAllVideos().get(UserAccountFactory.random.nextInt(simulationManager.getInstance().getAllVideos().size()));
+                        if (video != this.getCurrentlyViewed()) { // if the video is not the one that the user is currently watching
+                            this.getQueue().add(video);
+                        }
+                    } else { // 50% chance of adding a stream
+                        if (!simulationManager.getInstance().getAllStreams().isEmpty()) {
+                            Stream stream = simulationManager.getInstance().getAllStreams().get(UserAccountFactory.random.nextInt(simulationManager.getInstance().getAllStreams().size()));
+                            if (stream != this.getCurrentlyViewed()) { // if the stream is not the one that the user is currently watching
+                                this.getQueue().add(stream);
+                            }
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
+                semQueue.release();
             }
         }
     }

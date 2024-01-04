@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Initialize the simulation
-        simulationManager.initializeSimulation(10,10);
+        simulationManager.initializeSimulation(1,10);
 
         // Start the simulation
         simulationManager.startSimulation();
