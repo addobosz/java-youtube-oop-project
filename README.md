@@ -1,7 +1,9 @@
 # Good Tube App
 
-## Author: Adam Dobosz 156047
+### Short description:
 
+The following project was assigned due to Object Programming university course. 
+It is coded entirely in java. Some part of GUI was prepared using .form file. 
 
 ### Instruction:
 
@@ -18,6 +20,15 @@ or use dedicated java IDE (remember to set src folder as the source folder).
 
 - **Documentation?** For documentation, please go to javadoc folder and choose package-summary.html file. 
 
+
+### Features
+- each channel and user is a separate thread,
+- videos and streams are played in real-time,
+- progress of the simulation may be watched from the GUI,
+- entities might be searched using the search panel available in the user interface,
+- saving and loading state,
+- users may like videos and subscribe channels randomly. Moreover, users have queue in which the next videos to be played are stored,
+- channels start streams at random moments and add new videos. 
 
 ### Sources
 User pictures were acquired from https://www.iconarchive.com/, and are free for non-comercial usage.
